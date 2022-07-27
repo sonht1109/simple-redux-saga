@@ -1,0 +1,15 @@
+import { {{properCase name}}State, {{properCase name}}Action } from './types';
+import * as consts from './constants';
+import { AppState } from "redux/types";
+import { Reducer } from 'redux';
+
+const initState: {{properCase name}}State = {}
+
+export const {{camelCase name}}Reducer: Reducer<{{properCase name}}State, {{properCase name}}Action> = (state = initState, action: {{properCase name}}Action) => {
+  switch (action.type) {
+    default:
+      return { ...state };
+  }
+}
+
+export const {{camelCase name}}Selector = (state: AppState) => state.{{camelCase name}};

@@ -1,0 +1,23 @@
+import ErrorBound from 'components/ErrorBound';
+{{#if reducer}}
+import { {{camelCase name}}Reducer } from './store';
+import useInjectReducer from 'redux/useInjectReducer';
+{{/if}}
+
+interface Props {
+
+}
+
+export default function {{properCase name}} (props: Props) {
+  {{#if reducer}}
+  useInjectReducer('{{ camelCase name }}', {{camelCase name}}Reducer);
+  {{/if}}
+
+  return (
+    <ErrorBound>
+      <div></div>
+    </ErrorBound>
+  )
+}
+
+{{properCase name}}.displayName = {{properCase name}};
