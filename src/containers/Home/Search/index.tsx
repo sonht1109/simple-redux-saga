@@ -1,19 +1,19 @@
 import ErrorBound from 'components/ErrorBound';
-import { SSearch } from './styles';
 import _debounce from 'lodash.debounce';
 import { useCallback } from 'react';
-import { handleSearch } from '../store/actions';
 import { useDispatch } from 'react-redux';
+import { handleSearch } from '../store/actions';
+import { SSearch } from './styles';
 
 interface Props {}
 
 export default function Search({}: Props) {
-
   const dispatch = useDispatch();
 
-  const onSearch = (val: string) => dispatch(handleSearch(val))
-
-  const debounceChange = useCallback(_debounce(onSearch, 300), []);
+  const debounceChange = useCallback(
+    _debounce((val: string) => dispatch(handleSearch(val)), 300),
+    [],
+  );
 
   const onChange = (ev: any) => {
     debounceChange(ev.target.value);

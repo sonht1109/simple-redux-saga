@@ -3,7 +3,7 @@ import Pagination from 'components/Pagination';
 import { Children, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { memberSelector } from '../store';
-import { getMembers, setMembers, setPage } from '../store/actions';
+import { getMembers, setPage, takeMembers } from '../store/actions';
 import ListItem from './ListItem';
 import { SList } from './styles';
 
@@ -16,7 +16,7 @@ export default function List(props: Props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setMembers(getMembers({ keyword, take, page })));
+    dispatch(takeMembers(getMembers({ keyword, take, page })));
   }, [keyword, dispatch, take, page, shouldRefetch]);
 
   return (

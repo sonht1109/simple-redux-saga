@@ -1,10 +1,9 @@
-import * as consts from './constants';
-import { action } from 'typesafe-actions';
-import { EnumTodoFilterType, Todo } from '.';
+import { isDefined } from 'helpers';
 import { LOCAL_STORAGE_KEY } from 'helpers/constants';
 import { Response } from 'helpers/types';
-import { isDefined } from 'helpers';
-import { AppDispatch } from 'redux/types';
+import { action } from 'typesafe-actions';
+import { EnumTodoFilterType, Todo } from '.';
+import * as consts from './constants';
 
 export const defaultAction = (payload: any) => action(consts.DEFAULT, payload);
 
@@ -25,9 +24,7 @@ export const setTotal = (payload: number) => action(consts.SET_TOTAL, payload);
 export const refetch = () => action(consts.REFETCH);
 
 export const getTodosFromStore = (): Todo[] => {
-  const members = JSON.parse(
-    localStorage.getItem(LOCAL_STORAGE_KEY) || '',
-  );
+  const members = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '');
   if (members?.data) {
     return members.data as Todo[];
   }
@@ -59,7 +56,7 @@ export const handleDelete = (id: string) => (dispatch: any) => {
   const tmp = getTodosFromStore().filter(d => d.id !== id);
   updateTodosInStore(tmp);
   dispatch(setPage(1));
-}
+};
 
 export const getTodos = ({
   keyword = '',
@@ -92,8 +89,9 @@ export const getTodos = ({
   };
 };
 
-export const setTodos =
-  (res: Response<Todo>) => (dispatch: AppDispatch) => {
-    dispatch(setData(res.data));
-    dispatch(setTotal(res.total));
-  };
+// export const takeTodos = (res: Response<Todo>) => (dispatch: AppDispatch) => {
+//   dispatch(setData(res.data));
+//   dispatch(setTotal(res.total));
+// };
+
+export const takeTodos = (res: Response<Todo>) => action(consts.TAKE_DATA, res);

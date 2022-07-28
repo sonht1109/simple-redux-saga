@@ -1,10 +1,10 @@
-import * as consts from './constants';
+import { isDefined } from 'helpers';
+import { LOCAL_STORAGE_KEY_MEMBER } from 'helpers/constants';
+import { Response } from 'helpers/types';
+import { AppDispatch } from 'redux/types';
 import { action } from 'typesafe-actions';
 import { Member } from '.';
-import { LOCAL_STORAGE_KEY_MEMBER } from 'helpers/constants';
-import { AppDispatch } from 'redux/types';
-import { Response } from 'helpers/types';
-import { isDefined } from 'helpers';
+import * as consts from './constants';
 
 export const defaultAction = (payload: any) => action(consts.DEFAULT, payload);
 
@@ -78,7 +78,7 @@ export const getMembers = ({
   };
 };
 
-export const setMembers =
+export const takeMembers =
   (res: Response<Member>) => (dispatch: AppDispatch) => {
     dispatch(setData(res.data));
     dispatch(setTotal(res.total));

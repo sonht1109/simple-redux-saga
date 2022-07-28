@@ -3,10 +3,9 @@ import Pagination from 'components/Pagination';
 import { Children, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { homeSelector } from '../store';
-import { getTodos, setPage, setTodos } from '../store/actions';
+import { getTodos, setPage, takeTodos } from '../store/actions';
 import ListItem from './ListItem';
 import { SList } from './styles';
-
 interface Props {}
 
 export default function List(props: Props) {
@@ -16,7 +15,7 @@ export default function List(props: Props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setTodos(getTodos({ keyword, page, take, filter })));
+    dispatch(takeTodos(getTodos({ filter, keyword, take, page })));
   }, [filter, keyword, dispatch, page, take, shouldRefetch]);
 
   return (
