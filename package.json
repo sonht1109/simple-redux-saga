@@ -34,7 +34,7 @@
   "scripts": {
     "generate": "plop --plopfile internals/generators/index.js",
     "extract": "extract-messages --flat=true -d=vi --locales=en,vi --output src/assets/languages 'src/**/message*.ts'",
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test"
   },

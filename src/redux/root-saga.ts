@@ -26,6 +26,11 @@ function *watchFetchListMemberAction(actions: any) {
 export default function* rootSaga() {
   // fork tạo ra 1 process mới để hướng dẫn middleware perform 1 non-blocking call
   // yield fork(watchFetchListTaskAction);
+  // or yield fork [watcher1, watcher2, ...];
+
+  // takeLatest: call các actions => chỉ thực thi action cuối => có thể dùng kèm delay
+  // takeEvery: thực thi tất cả các actions được call
   yield takeLatest(homeConstants.TAKE_DATA, watchFetchListTaskAction);
+
   yield takeLatest(memberConstants.TAKE_DATA, watchFetchListMemberAction);
 }

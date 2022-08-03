@@ -8,3 +8,4 @@ export const SET_TOTAL = 'Home/SET_TOTAL';
 export const REFETCH = 'Home/REFETCH';
 
 export const TAKE_DATA = 'Home/TAKE_DATA';
+export const ADD = 'Home/ADD';
